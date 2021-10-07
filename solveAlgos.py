@@ -191,6 +191,7 @@ def smartSolve():
     An efficient, algorithm for solving block world.
     The idea is to start with block 0 and move it to row 3, then move block 1 to row 3, then block 2, etc until all of the blocks are sorted and on row 3.
     """
+    
     print("~~~Smart Solve~~~")
 
     board = Board(5, 5)

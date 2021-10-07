@@ -28,6 +28,7 @@ class Board():
             numBlocks: the number of blocks on the board
             other: 
         """
+
         if otherBoard is None: # Default constructor
             self.board = [[] for i in range(numPlaces)]
             self.numBlocks = numBlocks
@@ -57,6 +58,7 @@ class Board():
         return
             true if self == board else false
         """
+
         if self.numBlocks != other.numBlocks or self.numPlaces != other.numPlaces:
             return False
         for i in range(self.numPlaces):
@@ -67,15 +69,24 @@ class Board():
                     return False
         return True
 
+
     def printBoard(self):
         """
         Print current board state.
         """
+
         for place in self.board:
             print("|", place)
 
     
     def toString(self):
+        """
+        Makes a string representing the current board state. The string is in the same format as the printBoard() method produces.
+        
+        return
+            string: the string representing the current board state
+        """
+        
         string = ""
         for place in self.board:
             string += "|" + str(place) + "\n"
@@ -90,6 +101,7 @@ class Board():
             place: the place you want to move a block from
             direction: the direction you want to move (1 for forward or -1 for backwards)
         """
+
         newPlace = place + direction
         num = self.board[place].pop()
         self.board[newPlace].append(num)
@@ -102,6 +114,7 @@ class Board():
         return
             moves: all of the valid moves represented by a list of lists like [place, direction]
         """
+
         moves = []
         for i in range(self.numPlaces):
             if self.board[i] == []:
@@ -133,6 +146,7 @@ class Board():
         return
             True if it's solved else false
         """
+        
         for place in self.board:
             if len(place) > 0:
                 if len(place) < self.numBlocks:
