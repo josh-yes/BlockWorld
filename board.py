@@ -1,4 +1,6 @@
-#!/Users/joshuaschmitz/opt/anaconda3/bin python3
+#!/Users/joshuaschmitz/opt/anaconda3/bin/python3
+
+
 """
 Josh Schmitz
 Machine Learning
@@ -71,6 +73,13 @@ class Board():
         """
         for place in self.board:
             print("|", place)
+
+    
+    def toString(self):
+        string = ""
+        for place in self.board:
+            string += "|" + str(place) + "\n"
+        return string
 
 
     def moveBlock(self, place, direction):
