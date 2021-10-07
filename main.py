@@ -45,11 +45,14 @@ def dfs(board=Board(5, 5), history=[], depth=50):
 
 def depthFirst():
     print("~~~Depth First Search~~~")
+
     board = Board(5, 5)
     board.printBoard()
     print()
+    
     history = []
     dfs(board, history)
+    
     history[-1].printBoard()
     print()
 
@@ -99,27 +102,34 @@ def findBlock(board, block):
             return i
 
 
-def moveToTarget(board, i):
+def moveToTarget(board, i, path):
     place = findBlock(board, i)
     while board.board[place][-1] != i:
         if place == 0:
             board.moveBlock(0, 1)
+            path.append(Board(0, 0, board))
         else:
             board.moveBlock(1, -1)
+            path.append(Board(0, 0, board))
     while place != 2:
         board.moveBlock(place, 1)
+        path.append(Board(0, 0, board))
         place += 1
 
 
 def smartSolve():
     print("~~~Smart Solve~~~")
+
     board = Board(5, 5)
-    board.printBoard()
-    print()
+    
+    path = [Board(0, 0, board)]
     for i in range(board.numBlocks):
-        moveToTarget(board, i)
-    board.printBoard()
-    print()
+        moveToTarget(board, i, path)
+    
+    for state in path:
+        state.printBoard()
+        print()
+
 
 smartSolve()
 breastFirst()
