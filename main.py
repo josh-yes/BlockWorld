@@ -21,12 +21,13 @@ def getReverseMove(move):
         reverseMove[0] = move[0] - 1
 
 
-def dfs(board=Board(5, 5), history=[], depth=50):
+def dfs(board=Board(5, 5), history=[], path=[], depth=50):
     history.append(board)
+    path.append(board)
     if board.isSolved():
-        return True
+        return True, path
     if depth == 0:
-        return False
+        return False, path
 
     for move in board.getValidMoves():
         child = Board(0, 0, board)
@@ -39,22 +40,23 @@ def dfs(board=Board(5, 5), history=[], depth=50):
                 break
         
         if not seen:
-            if dfs(child, history, depth - 1):
-                return True
-    return False
+            solved, newPath = dfs(child, history, [val for val in path], depth - 1)
+            if solved:
+                return True, newPath
+    return False, path
+
 
 def depthFirst():
     print("~~~Depth First Search~~~")
 
     board = Board(5, 5)
-    board.printBoard()
-    print()
     
     history = []
-    dfs(board, history)
+    solved, path = dfs(board, history)
     
-    history[-1].printBoard()
-    print()
+    for state in path:
+        state.printBoard()
+        print()
 
 
 def bfs(board=Board(5, 5), history=[]):
@@ -132,5 +134,5 @@ def smartSolve():
 
 
 smartSolve()
-breastFirst()
+#breastFirst()
 depthFirst()
