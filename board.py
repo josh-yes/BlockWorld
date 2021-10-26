@@ -1,10 +1,8 @@
 #!/Users/joshuaschmitz/opt/anaconda3/bin/python3
 
-
 """
 Josh Schmitz
-Machine Learning
-HW4
+board.py
 
 Description:
 I will be making a block world and generating random moves.

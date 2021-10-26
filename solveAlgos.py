@@ -1,10 +1,8 @@
 #!/Users/joshuaschmitz/opt/anaconda3/bin/python3
 
-
 """
 Josh Schmitz
-Machine Learning
-HW5
+solveAlgos.py
 
 Description:
 Implements 3 machine learning algorithms for solving blockworld: smartSolve, bread-first, depth-first
