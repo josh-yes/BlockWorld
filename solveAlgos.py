@@ -14,7 +14,7 @@ Implements 3 machine learning algorithms for solving blockworld: smartSolve, bre
 from board import Board
 
 
-def dfs(board=Board(5, 5), history=[], path=[], depth=50):
+def dfs(board=Board(5, 5), history=[], path=[], depth=25):
     """
     Recursive implementation of dfs for board states.
     
@@ -55,16 +55,19 @@ def dfs(board=Board(5, 5), history=[], path=[], depth=50):
     return False, path
 
 
-def depthFirst():
+def depthFirst(board=Board(5, 5)):
     """
     Starts dfs and prints the solution path.
     """
 
     print("~~~Depth First Search~~~")
 
-    solved, path = dfs()
+    solved, path = dfs(board)
     
+    i = 0
     for state in path:
+        print("i: ", i)
+        i += 1
         state.printBoard()
         print()
 
@@ -113,7 +116,7 @@ def bfs(tree={}, board=Board(5, 5), history=[]):
     return False
 
 
-def breadFirst():
+def breadFirst(board=Board(5, 5)):
     """
     Starts bfs and prints the solution path.
     """
@@ -121,7 +124,7 @@ def breadFirst():
     print("~~~Bread First Search~~~")
     
     tree = {}
-    solved, state = bfs(tree)
+    solved, state = bfs(tree, board)
 
     # get the solution path by navigating tree backwards
     path = []
@@ -132,7 +135,10 @@ def breadFirst():
         val = tree[val]
     
     # print solution path
+    i = 0
     while path:
+        print("i: ", i)
+        i += 1
         print(path.pop())
 
 
@@ -186,7 +192,7 @@ def moveToTarget(board, i, path):
         place += 1
 
 
-def smartSolve():
+def smartSolve(board=Board(5, 5)):
     """
     An efficient, algorithm for solving block world.
     The idea is to start with block 0 and move it to row 3, then move block 1 to row 3, then block 2, etc until all of the blocks are sorted and on row 3.
@@ -194,8 +200,6 @@ def smartSolve():
     
     print("~~~Smart Solve~~~")
 
-    board = Board(5, 5)
-    
     path = [Board(0, 0, board)]
     for i in range(board.numBlocks):
         moveToTarget(board, i, path)

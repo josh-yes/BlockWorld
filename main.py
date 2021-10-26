@@ -12,12 +12,13 @@ Implements 3 machine learning algorithms for solving blockworld: smartSolve, bre
 
 
 import solveAlgos
+from board import Board
 import sys
 
-
+board = Board(5, 5)
 if "smartSolve" in sys.argv:
-    solveAlgos.smartSolve()
+    solveAlgos.smartSolve(Board(0, 0, board))
 if "bfs" in sys.argv:
-    solveAlgos.breadFirst()
+    solveAlgos.breadFirst(Board(0, 0, board))
 if "dfs" in sys.argv:
-    solveAlgos.depthFirst()
+    solveAlgos.depthFirst(Board(0, 0, board))
